@@ -2,9 +2,11 @@ package ensayo.values;
 
 import co.com.sofka.domain.generic.ValueObject;
 
-public class Procedencia implements ValueObject<String> {
+import java.util.Date;
+
+public class FechaRecepcion implements ValueObject<Date> {
     @Override
-    public String value() {
+    public Date value() {
         return null;
     }
 }

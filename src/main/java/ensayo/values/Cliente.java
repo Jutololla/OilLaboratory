@@ -1,4 +1,10 @@
 package ensayo.values;
 
-public class Cliente {
+import co.com.sofka.domain.generic.ValueObject;
+
+public class Cliente implements ValueObject<String> {
+    @Override
+    public String value() {
+        return null;
+    }
 }

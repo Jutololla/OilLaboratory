@@ -2,7 +2,7 @@ package ensayo.values;
 
 import co.com.sofka.domain.generic.ValueObject;
 
-public class Procedencia implements ValueObject<String> {
+public class CodigoUN implements ValueObject<String> {
     @Override
     public String value() {
         return null;
