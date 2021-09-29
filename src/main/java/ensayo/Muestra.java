@@ -35,6 +35,13 @@ public class Muestra extends AggregateEvent<MuestraId> {
         this.fechaRecepcion= Objects.requireNonNull(fechaRecepcion);
     }
 
+    public void actualizarAtributos(CodigoUN codigoUN, Procedencia procedencia, Cliente cliente, FechaRecepcion fechaRecepcion){
+        actualizarCodigoUN(codigoUN);
+        actualizarProcedencia(procedencia);
+        actualizarCliente(cliente);
+        actualizarFechaRecepcion(fechaRecepcion);
+    }
+
     public CodigoUN codigoUN() {
         return codigoUN;
     }

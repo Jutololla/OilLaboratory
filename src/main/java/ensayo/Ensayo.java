@@ -1,9 +1,11 @@
 package ensayo;
 
 import co.com.sofka.domain.generic.AggregateEvent;
+import co.com.sofka.domain.generic.DomainEvent;
 import ensayo.events.*;
 import ensayo.values.*;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Ensayo extends AggregateEvent<EnsayoId> {
@@ -11,11 +13,27 @@ public class Ensayo extends AggregateEvent<EnsayoId> {
     protected Analista analista;
     protected Normativa normativa;
     protected FechaAnalisis fechaAnalisis;
-    protected ResultadoAnalisis ResultadoAnalisis;
+    protected ResultadoAnalisis resultadoAnalisis;
 
-    public Ensayo(EnsayoId entityId, Normativa normativa) {
+//    public Ensayo(EnsayoId entityId, Normativa normativa) {
+//        super(entityId);
+//        this.normativa=normativa;
+//    }
+
+    public Ensayo(Normativa normativa){
+        super(new EnsayoId());
+        appendChange(new EnsayoCreado(normativa)).apply();
+            }
+
+    private Ensayo(EnsayoId entityId){
         super(entityId);
-        this.normativa=normativa;
+        subscribe(new EnsayoChange(this));
+    }
+
+    public static Ensayo from(EnsayoId ensayoId, List<DomainEvent> events){
+        var ensayo = new Ensayo(ensayoId);
+        events.forEach(ensayo::applyEvent);
+        return ensayo;
     }
 
     public void asociarMuestra(CodigoUN codigoUN, Procedencia procedencia, Cliente cliente, FechaRecepcion fechaRecepcion){
